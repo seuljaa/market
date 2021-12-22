@@ -1,0 +1,32 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="thead-dark">
+            <th>번호</th>
+            <th>상품이름</th>
+            <th>가격</th>
+            <th>마켓이름</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if products %}
+        {% for product in products %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>
+                <a href="{% url 'products:detail' product.id %}">{{ product.display_name }}</a>
+            </td>
+            <td>{{ product.sale_price }}원</td>
+            <td>{{ product.market.name }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">상품이 없습니다.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
