@@ -1,35 +1,23 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-<div class="container my-3">
-    <h2 class="border-bottom py-2">{{ products.display_name }}</h2>
-    <div class="card my-3">
-        <div class="card-body">
-            <div class="card-text" style="white-space: pre-line;">{{ question.content }}</div>
-            <div class="d-flex justify-content-end">
-                <div class="badge badge-light p-2">
-                    {{ question.create_date }}
-                </div>
-            </div>
-        </div>
-    </div>
-    <h5 class="border-bottom my-3 py-2">{{question.answer_set.count}}개의 답변이 있습니다.</h5>
-    {% for answer in question.answer_set.all %}
-    <div class="card my-3">
-        <div class="card-body">
-            <div class="card-text" style="white-space: pre-line;">{{ answer.content }}</div>
-            <div class="d-flex justify-content-end">
-                <div class="badge badge-light p-2">
-                    {{ answer.create_date }}
-                </div>
-            </div>
-        </div>
-    </div>
+<h1>{{ products.display_name }}</h1>
+
+<div>
+    정가 :
+    {{ products.price }}
+</div>
+
+<div>
+    할인가 :
+    {{ products.sale_price }}
+</div>
+
+<p>옵션</p>
+<div>
+    <ul>
+    {% for product in products.productreal_set.all %}
+        <li>{{ product.option_1_type }} : {{ product.option_1_display_name }}</li>
+        <li>{{ product.option_2_type }} : {{ product.option_2_display_name }}</li>
+    </ul>
     {% endfor %}
-    <form action="{% url 'pybo:answer_create' question.id %}" method="post" class="my-3">
-        {% csrf_token %}
-        <div class="form-group">
-            <textarea name="content" id="content" class="form-control" rows="10"></textarea>
-        </div>
-        <input type="submit" value="답변등록" class="btn btn-primary">
-    </form>
 </div>

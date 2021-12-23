@@ -10,5 +10,6 @@ def product_list(request):
 
 def product_detail(request, product_id):
     products = Product.objects.get(pk=product_id)
-    context = {'products':products}
+    opt = products.productreal_set.all
+    context = {'products':products, 'opt':opt}
     return render(request, 'products/products_detail.html', context)
