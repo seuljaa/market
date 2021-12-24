@@ -35,6 +35,14 @@
     </div>
          <a href="{% url 'products:question_create' products.id %}" class="btn btn-primary">질문 등록하기</a>
     <div class="card t-mt-[30px]">
+            {% if messages %}
+            <div class="alert alert-success my-3" role="alert">
+            {% for message in messages %}
+               <strong>{{ message.tags }}</strong>
+                <ul><li>{{ message.message }}</li></ul>
+            {% endfor %}
+            </div>
+            {% endif %}
             <div class="card-header">
                 질문리스트
             </div>

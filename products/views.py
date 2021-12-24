@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import render, redirect
 from products.models import Product
@@ -29,6 +30,7 @@ def question_create(request, product_id):
             question.object_id = product_id
             question.content_type = ContentType.objects.get_for_model(product)
             question.save()
+            messages.success(request, "질문이 등록되었습니다.")
             return redirect('products:detail', product_id=product.id)
     else :
         form = QuestionForm()
