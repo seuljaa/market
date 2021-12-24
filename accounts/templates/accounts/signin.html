@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% load django_bootstrap5 %}
 {% block content %}
-<div class="container my-3">
+<div class="container my-3" xmlns="http://www.w3.org/1999/html">
     <form method="post" class="post-form" action="{% url 'accounts:signin' %}">
         {% csrf_token %}
         <div class="form-group">
@@ -14,7 +14,9 @@
             <input type="password" class="form-control" name="password" id="password"
                    value="{{ form.password.value|default_if_none:'' }}">
         </div>
-        <button type="submit" class="btn btn-primary">로그인</button>
+        </br>
+        <button type="submit" class="btn btn-primary">로그인</button></br></br>
+        <a href="{% url 'accounts:signup' %}" class="btn btn-primary">회원가입</a>
     </form>
 </div>
 {% endblock %}

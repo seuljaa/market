@@ -50,7 +50,16 @@
                 {% for question in questions %}
                 <li class="list-group-item">
                     <span class="badge bg-secondary">{{ forloop.counter }}</span>
-                    {{question.body}} <br>
+                    {{question.body}}
+                    {% if request.user == question.user %}
+                    <div class="my-1">
+                        <a href="{% url 'question:question_modify' question.id  %}"
+                        class="btn btn-sm btn-outline-secondary">수정</a>
+                        <a href="{% url 'question:question_delete' question.id  %}"
+                        class="btn btn-sm btn-outline-secondary">삭제</a>
+                    </div>
+                    {% endif %}<br>
+                    <span class="badge bg-secondary">작성자 : {{question.user.username}}</span><br>
                     <span class="badge bg-secondary">작성일 : {{question.reg_date}}</span>
                 </li>
                 {% endfor %}
