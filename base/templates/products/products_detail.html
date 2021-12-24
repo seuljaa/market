@@ -1,23 +1,52 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-<h1>{{ products.display_name }}</h1>
-
-<div>
-    정가 :
-    {{ products.price }}
-</div>
-
-<div>
-    할인가 :
-    {{ products.sale_price }}
-</div>
-
-<p>옵션</p>
-<div>
-    <ul>
-    {% for product in products.productreal_set.all %}
-        <li>{{ product.option_1_type }} : {{ product.option_1_display_name }}</li>
-        <li>{{ product.option_2_type }} : {{ product.option_2_display_name }}</li>
-    </ul>
-    {% endfor %}
-</div>
+{% extends "layout.html" %}
+{% load django_bootstrap5 %}
+{%block content %}
+<section class="section-prod-detail mt-4">
+    <div class="container">
+        <h1>기본정보</h1>
+        <div>
+            번호 : {{products.id}}
+        </div>
+        <div>
+            등록 : {{products.reg_date}}
+        </div>
+        <div>
+            수정 : {{products.update_date}}
+        </div>
+        <div>
+            이름 : {{products.display_name}}
+        </div>
+        <div>
+            가격 : {{products.sale_price}}원
+        </div>
+        <div>
+            마켓 : {{products.market.name}}
+        </div>
+        <h1 class="mt-3">옵션</h1>
+        <ul>
+            {% for product_real in product_reals %}
+            <li>
+                {{product_real.option_1_type}} : {{product_real.option_1_display_name}}
+                /
+                {{product_real.option_2_type}} : {{product_real.option_2_display_name}}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+         <a href="{% url 'products:question_create' products.id %}" class="btn btn-primary">질문 등록하기</a>
+    <div class="card t-mt-[30px]">
+            <div class="card-header">
+                질문리스트
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for question in questions %}
+                <li class="list-group-item">
+                    <span class="badge bg-secondary">{{ forloop.counter }}</span>
+                    {{question.body}} <br>
+                    <span class="badge bg-secondary">작성일 : {{question.reg_date}}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+</section>
+{%endblock%}
