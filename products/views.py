@@ -34,4 +34,4 @@ def question_create(request, product_id):
             return redirect('products:detail', product_id=product.id)
     else :
         form = QuestionForm()
-    return render(request, 'products/question_create.html', {'form':form} )
+    return render(request, 'questions/question_create.html', {'form':form} )
