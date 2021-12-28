@@ -32,6 +32,9 @@
             </li>
             {% endfor %}
         </ul>
+        <div>
+            <a href="{% url 'products:list' %}" class="btn btn-primary">목록으로</a>
+        </div>
     </div>
          <a href="{% url 'products:question_create' products.id %}" class="btn btn-primary">질문 등록하기</a>
     <div class="card t-mt-[30px]">
@@ -49,7 +52,7 @@
             <ul class="list-group list-group-flush">
                 {% for question in questions %}
                 <li class="list-group-item">
-                    <span class="badge bg-secondary">{{ forloop.counter }}</span>
+                    <span class="badge bg-secondary">{{ question.id }}</span>
                     {{question.body}}
                     {% if request.user == question.user %}
                     <div class="my-1">
@@ -64,6 +67,42 @@
                 </li>
                 {% endfor %}
             </ul>
+                <!-- 페이징처리 시작 -->
+            <ul class="pagination justify-content-center">
+                <!-- 이전페이지 -->
+                {% if questions.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ questions.previous_page_number }}">이전</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                </li>
+                {% endif %}
+                <!-- 페이지리스트 -->
+                {% for page_number in questions.paginator.page_range %}
+                    {% if page_number == questions.number %}
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                <!-- 다음페이지 -->
+                {% if questions.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ questions.next_page_number }}">다음</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                </li>
+                {% endif %}
+            </ul>
+            <!-- 페이징처리 끝 -->
         </div>
 </section>
 {%endblock%}
