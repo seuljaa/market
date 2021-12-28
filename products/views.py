@@ -4,14 +4,17 @@ from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import render, redirect
 from products.models import Product
 from questions.models import Question
-from django.utils import timezone
+from django.core.paginator import Paginator
 from .forms import QuestionForm
 # Create your views here.
 
 
 def product_list(request):
+    page = request.GET.get('page', '1')
     products = Product.objects.order_by('-reg_date')
-    context = {'products':products}
+    paginator = Paginator(products, 10)
+    page_obj = paginator.get_page(page)
+    context = {'products':page_obj}
     return render(request, 'products/products_list.html', context)
 
 def product_detail(request, product_id):
