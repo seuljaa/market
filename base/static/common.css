@@ -1,29 +1,18 @@
-.t-fixed {
-  position: fixed;
+.t-mt-\[30px\] {
+  margin-top: 30px;
 }
 
-.t-mt-\[100px\] {
-  margin-top: 100px;
+.t-w-\[100px\] {
+  width: 100px;
 }
 
-.t-resize {
-  resize: both;
+.t-bg-\[\#afafaf\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(175 175 175 / var(--tw-bg-opacity));
 }
 
-.t-underline {
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
-}
-
-.\[content\:\'hello\'\] {
-  content: 'hello';
-}
-
-.\[content\:\"hello\"\] {
-  content: "hello";
-}
-
-@font-face {  font-family: 'GmarketSansMedium';
+@font-face {
+  font-family: 'GmarketSansMedium';
 
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
 
@@ -32,14 +21,7 @@
   font-style: normal;
 }
 
-html > body {  font-family: "GmarketSansMedium";
+html > body {
+  font-family: "GmarketSansMedium";
   text-underline-position: under;
-}
-
-@media (prefers-color-scheme: dark) {
-  @media (min-width: 1024px) {
-    .dark\:lg\:hover\:\[paint-order\:markers\]:hover {
-      paint-order: markers;
-    }
-  }
 }
