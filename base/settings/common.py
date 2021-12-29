@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     # 서드파티
     'django_bootstrap5',
     'debug_toolbar',
@@ -86,9 +87,9 @@ WSGI_APPLICATION = 'base.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'market',
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': 'site224',
+        'USER': 'sbsst',
+        'PASSWORD': 'sbs123414',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

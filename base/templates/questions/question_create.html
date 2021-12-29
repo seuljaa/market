@@ -1,28 +1,39 @@
 {% extends "layout.html" %}
 {% load django_bootstrap5 %}
 {%block content %}
-<div class="container">
-    <h5 class="my-3 border-bottom pb-2">질문등록</h5>
-    <form method="POST" class="post-form my-3">
-        {% csrf_token %}
-        <!-- 오류표시 Start -->
-        {% if form.errors %}
-            <div class="alert alert-danger" role="alert">
-            {% for field in form %}
-                {% if field.errors %}
-                <strong>{{ field.label }}</strong>
-                {{ field.errors }}
-                {% endif %}
-            {% endfor %}
+<div class="card t-mt-[30px]">
+            <div class="card-header">
+                질문등록
             </div>
-        {% endif %}
-        <!-- 오류표시 End -->
-        <div class="form-group">
-            <label for="body">내용</label>
-            <textarea class="form-control" name="body"
-                      id="body" rows="10">{{ form.body.value|default_if_none:'' }}</textarea>
+
+            <div class="card-body">
+                {% if user.is_authenticated %}
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    {% bootstrap_form form %}
+                    {% bootstrap_button button_type="submit" content="질문작성" %}
+                    {% bootstrap_button button_type="reset" content="취소" %}
+
+                </form>
+                {% else %}
+                <div class="t-text-gray-400">
+                    <a href="{% url 'accounts:signin' %}?next={{request.get_full_path}}">로그인</a> 후 이용해주세요.
+                </div>
+                {% endif %}
+
+                {% if form.errors %}
+                <script>
+                    let $lastForm = $('form').last();
+                    $(window).on('load', function() {
+                        $(window).scrollTop($lastForm.offset().top);
+                    });
+
+
+                </script>
+                {% endif %}
+
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">저장하기</button>
-    </form>
-</div>
 {%endblock%}

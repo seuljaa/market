@@ -19,8 +19,10 @@ from django.contrib import admin
 from django.urls import path, include
 from products import views
 
+app_name = 'base'
+
 urlpatterns = [
-    path('', views.product_list),
+    path('', views.main, name='main'),
     path('products/', include('products.urls')),
     path('accounts/', include('accounts.urls')),
     path('questions/', include('questions.urls')),

@@ -9,6 +9,8 @@ from .forms import QuestionForm
 from django.db.models import Q
 # Create your views here.
 
+def main(request):
+    return render(request, 'main.html')
 
 def product_list(request):
     page = request.GET.get('page', '1')
@@ -32,7 +34,7 @@ def product_detail(request, product_id):
     ct = ContentType.objects.get_for_model(products)
     page = request.GET.get('page','1')
     questions = Question.objects.filter(content_type=ct,object_id=product_id)
-    paginator = Paginator(questions, 10)
+    paginator = Paginator(questions, 5)
     page_obj = paginator.get_page(page)
     return render(request, 'products/products_detail.html', {'product_reals':product_reals, 'products':products, 'questions':page_obj} )
 
@@ -47,7 +49,6 @@ def question_create(request, product_id):
             question.object_id = product_id
             question.content_type = ContentType.objects.get_for_model(product)
             question.save()
-            messages.success(request, "질문이 등록되었습니다.")
             return redirect('products:detail', product_id=product.id)
     else :
         form = QuestionForm()
