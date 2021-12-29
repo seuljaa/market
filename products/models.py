@@ -22,6 +22,8 @@ class Product(models.Model):
     review_point = models.PositiveIntegerField('리뷰평점', default=0)
 
 
+
+
 class ProductReal(models.Model):
     reg_date = models.DateTimeField('등록날짜', auto_now_add=True)
     update_date = models.DateTimeField('갱신날짜', auto_now=True)

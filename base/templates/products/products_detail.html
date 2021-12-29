@@ -78,10 +78,10 @@
                     {% endfor %}
                     </tbody>
                 </table>
+                <div><a href="{% url 'products:list'%}" class="btn btn-primary">상품목록</a></div>
             </div>
         </div>
     <div class="card t-mt-[30px]">
-        <div><a href="{% url 'products:question_create' products.id %}" class="btn btn-primary">질문 등록하기</a></div>
             {% if messages %}
             <div class="alert alert-success my-3" role="alert">
             {% for message in messages %}
@@ -92,7 +92,10 @@
             {% endif %}
             <div class="card-header">
                 질문리스트
+                <div><a href="{% url 'products:question_create' products.id %}" class="btn btn-primary">질문 등록하기</a></div>
             </div>
+
+            {% if questions %}
             <ul class="list-group list-group-flush">
                 {% for question in questions %}
                 <li class="list-group-item">
@@ -111,6 +114,16 @@
                 </li>
                 {% endfor %}
             </ul>
+            {% endif %}
+
+            {% if not questions %}
+            <div class="card-body">
+                <div class="t-text-gray-400">
+                    질문이 없습니다.
+                </div>
+            </div>
+            {% endif %}
+
                 <!-- 페이징처리 시작 -->
             <ul class="pagination justify-content-center">
                 <!-- 이전페이지 -->

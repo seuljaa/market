@@ -21,6 +21,6 @@ def signup(request):
         'form': form,
     })
 
-def signin(request):
+def find_id(request):
 
     return
