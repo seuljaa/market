@@ -39,7 +39,7 @@
             <!-- 이전페이지 -->
             {% if products.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ products.previous_page_number }}">이전</a>
+                <a class="page-link" data-page="{{ products.previous_page_number }}" href="#">이전</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -51,11 +51,11 @@
             {% if products.number|add:-5 <= page_number <= products.number|add:5 %}
             {% if page_number == products.number %}
             <li class="page-item active" aria-current="page">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                <a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
             </li>
             {% else %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                <a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
             </li>
             {% endif %}
             {% endif %}
@@ -63,7 +63,7 @@
             <!-- 다음페이지 -->
             {% if products.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ products.next_page_number }}">다음</a>
+                <a class="page-link" data-page="{{ products.next_page_number }}" href="#">다음</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -78,3 +78,4 @@
 {% endwith %}
 
 {%endblock%}
+

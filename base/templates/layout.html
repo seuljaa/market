@@ -57,7 +57,9 @@
                     </li>
                     {% endif %}
                 </ul>
-                <form class="d-flex" action="{% url 'products:list'%}">
+                <form class="d-flex" id="searchForm" method="get" action="{% url 'products:list' %}">
+                    <input type="hidden" id="search_keyword" name="search_keyword" value="{{ search_keyword|default_if_none:'' }}">
+                    <input type="hidden" id="page" name="page" value="{{ page }}">
                     <input class="form-control me-2" type="search" name="search_keyword" placeholder="상품명을 입력해주세요." aria-label="Search" value="{{request.GET.search_keyword}}">
                     <button class="btn btn-outline-success t-whitespace-nowrap" type="submit">검색</button>
                 </form>
@@ -69,6 +71,24 @@
 <section class="t-flex-1 t-py-[20px] t-flex t-flex-col">
     {%block content%}
     {%endblock%}
+{% block script %}
+<script type='text/javascript'>
+$(document).ready(function(){
+    $(".page-link").on('click', function() {
+        $("#page").val($(this).data("page"));
+        $("#searchForm").submit();
+    });
+
+    $("#btn_search").on('click', function() {
+        $("#search_keyword").val($(".search_keyword").val());
+        $("#page").val(1);  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+        $("#searchForm").submit();
+    });
+});
+</script>
+{% endblock %}
+
+
 </section>
 
 <footer class="footer py-3 bg-light">

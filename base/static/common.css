@@ -60,10 +60,6 @@
   min-height: 100vh;
 }
 
-.t-w-\[100px\] {
-  width: 100px;
-}
-
 .t-w-full {
   width: 100%;
 }
@@ -110,11 +106,6 @@
 
 .t-rounded {
   border-radius: 0.25rem;
-}
-
-.t-bg-\[\#afafaf\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(175 175 175 / var(--tw-bg-opacity));
 }
 
 .t-object-cover {

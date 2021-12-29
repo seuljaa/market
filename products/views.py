@@ -14,18 +14,17 @@ def main(request):
 
 def product_list(request):
     page = request.GET.get('page', '1')
-    kw = request.GET.get('kw', '')
+    search_keyword = request.GET.get('search_keyword', '')
+
     products = Product.objects.order_by('-reg_date')
-    if kw:
-        product_list = products.filter(
-            Q(subject__icontains=kw) |  # 제목검색
-            Q(content__icontains=kw) |  # 내용검색
-            Q(author__username__icontains=kw) |  # 질문 글쓴이검색
-            Q(answer__author__username__icontains=kw)  # 답변 글쓴이검색
+    if search_keyword:
+        products = products.filter(
+            Q(display_name__icontains=search_keyword)
         ).distinct()
     paginator = Paginator(products, 10)
     page_obj = paginator.get_page(page)
-    context = {'products':page_obj, 'page':page, 'kw':kw}
+
+    context = {'products':page_obj, 'page':page, 'search_keyword':search_keyword}
     return render(request, 'products/products_list.html', context)
 
 def product_detail(request, product_id):
