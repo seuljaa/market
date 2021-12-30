@@ -1,9 +1,12 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
+from django.db.models import QuerySet
+from django.urls import reverse
 
-from accounts.forms import SignupForm
 
+from accounts.forms import SignupForm, FindUsernameForm
+from .models import User
 
 def signup(request):
     if request.method == 'POST':
@@ -22,5 +25,21 @@ def signup(request):
     })
 
 def find_id(request):
+    if request.method == 'POST':
+        form = FindUsernameForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            last_name = form.cleaned_data['last_name']
 
-    return
+            qs: QuerySet = User.objects.filter(email=email, last_name=last_name)
+
+            if not qs.exists():
+                messages.warning(request, "일치하는 회원이 존재하지 않습니다.")
+            else:
+                user: User = qs.first()
+                messages.success(request, f"해당회원의 username은 {user.username} 입니다.")
+                return redirect(reverse("accounts:signin") + '?username=' + user.username)
+    else:
+        form = FindUsernameForm()
+
+    return render(request, 'accounts/find_id.html', {'form': form,})
