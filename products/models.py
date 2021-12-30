@@ -16,10 +16,14 @@ class Product(models.Model):
     sale_price = models.PositiveIntegerField('실제판매가')
     is_hidden = models.BooleanField('노출여부', default=False)
     is_sold_out = models.BooleanField('품절여부', default=False)
-    category_id = models.PositiveIntegerField('카테고리번호(추후설계)', default=0)
+    category_id = models.PositiveIntegerField('카테고리번호', default=0)
     hit_count = models.PositiveIntegerField('조회수', default=0)
     review_count = models.PositiveIntegerField('리뷰수', default=0)
     review_point = models.PositiveIntegerField('리뷰평점', default=0)
+
+    def thumb_img_url(self):
+
+        return f"https://cdn.jsdelivr.net/gh/seuljaa/market_img/원피스1.jpg"
 
 
 
