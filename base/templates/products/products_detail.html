@@ -43,7 +43,6 @@
             <div class="card-header">
                 옵션
             </div>
-
             <div class="card-body">
                 <table class="table table-hover">
                     <colgroup>
@@ -53,41 +52,51 @@
                         <col >
                     </colgroup>
                     <thead>
-                    <tr>
-                        <th>사이즈</th>
-                        <th>색상</th>
-                        <th>품절</th>
-                        <th>선택</th>
-                    </tr>
+                        <tr>
+                            <th>색상</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    {% for product_real in product_reals %}
-                    <tr>
-                        <td>
-                            {{product_real.option_1_display_name}}
-                        </td>
-                        <td>
-                            {{product_real.option_2_display_name}}
-                        </td>
-                        <td>
-                            {% if not product_real.is_sold_out %}
-                            <span class="badge bg-primary">판매중</span>
-                            {% else %}
-                            <span class="badge bg-secondary">품절</span>
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if not product_real.is_sold_out %}
-                            <input type="checkbox" name="product" value="{{product_real.option_1_name}}&{{product_real.option_2_name}}" checked>
-                            {% else %}
-                            <span class="badge bg-secondary">품절</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    {% endfor %}
+                        <tr>
+                            <td>
+                                <select name="color">
+                                    <option value="BLUE">감성블루</option>
+                                    <option value="RED">감성레드</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th>사이즈</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <select name="size">
+                                    <option value="44">44</option>
+                                    <option value="55">55</option>
+                                    <option value="66">66</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                수량
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="quantity" class="sm:t-w-40" type="text"> 개<br><br>
+                                <input type="submit" class="btn btn-primary" value="장바구니 담기">
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
-                <div><a href="{% url 'products:list'%}" class="btn btn-primary">상품목록</a></div>
+                <div>
+                    <a href="{% url 'products:list'%}" class="btn btn-primary">상품목록</a>
+                </div>
             </div>
         </div>
     <div class="card t-mt-[30px]">

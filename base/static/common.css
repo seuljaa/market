@@ -326,6 +326,14 @@ html > body {
     width: 10rem;
   }
 
+  .sm\:t-w-10 {
+    width: 2.5rem;
+  }
+
+  .sm\:t-w-1 {
+    width: 0.25rem;
+  }
+
   .sm\:t-grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
