@@ -49,13 +49,15 @@
                     <colgroup>
                         <col class="sm:t-w-40">
                         <col class="sm:t-w-40">
-                        <col>
+                        <col class="sm:t-w-40">
+                        <col >
                     </colgroup>
                     <thead>
                     <tr>
                         <th>사이즈</th>
                         <th>색상</th>
                         <th>품절</th>
+                        <th>선택</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -70,6 +72,13 @@
                         <td>
                             {% if not product_real.is_sold_out %}
                             <span class="badge bg-primary">판매중</span>
+                            {% else %}
+                            <span class="badge bg-secondary">품절</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if not product_real.is_sold_out %}
+                            <input type="checkbox" name="product" value="{{product_real.option_1_name}}&{{product_real.option_2_name}}" checked>
                             {% else %}
                             <span class="badge bg-secondary">품절</span>
                             {% endif %}

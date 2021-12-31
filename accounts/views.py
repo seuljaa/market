@@ -31,13 +31,13 @@ def find_id(request):
             email = form.cleaned_data['email']
             last_name = form.cleaned_data['last_name']
 
-            qs: QuerySet = User.objects.filter(email=email, last_name=last_name)
+            qs:QuerySet = User.objects.filter(email=email, last_name=last_name)
 
             if not qs.exists():
                 messages.warning(request, "일치하는 회원이 존재하지 않습니다.")
             else:
                 user: User = qs.first()
-                messages.success(request, f"해당회원의 username은 {user.username} 입니다.")
+                messages.success(request, f"해당회원의 사용자ID는 {user.username} 입니다.")
                 return redirect(reverse("accounts:signin") + '?username=' + user.username)
     else:
         form = FindUsernameForm()
