@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>멋블리</title>
+    <title>퀸블리</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -33,7 +33,7 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'main' %}"><i class="fab fa-pied-piper-hat"></i> 멋블리</a>
+            <a class="navbar-brand" href="{% url 'main' %}"><i class="fab fa-pied-piper-hat"></i> 퀸블리</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -43,9 +43,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'products:list' %}"><i class="fas fa-tshirt"></i> 상품리스트</a>
                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'products:list' %}"><i class="fas fa-shopping-cart"></i> 장바구니</a>
+                    </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i>{{user.username}}님 로그아웃</a>
+                        <a class="nav-link" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i> {{user.username}}님 로그아웃</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
@@ -93,7 +96,7 @@ $(document).ready(function(){
 
 <footer class="footer py-3 bg-light">
     <div class="container t-text-center">
-        <span class="text-muted"><i class="fab fa-pied-piper-hat"></i> 멋블리</span>
+        <span class="text-muted"><i class="fab fa-pied-piper-hat"></i> 퀸블리</span>
     </div>
 </footer>
 
