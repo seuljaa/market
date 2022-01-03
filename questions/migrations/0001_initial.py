@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
                 ('reg_date', models.DateTimeField(auto_now_add=True, verbose_name='등록날짜')),
                 ('update_date', models.DateTimeField(auto_now=True, verbose_name='갱신날짜')),
                 ('body', models.TextField(verbose_name='내용')),
-                ('questions', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='questions.questions')),
+                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='questions.question')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.user')),
             ],
         ),
