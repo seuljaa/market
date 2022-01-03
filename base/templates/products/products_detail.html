@@ -56,14 +56,16 @@
                             <th>색상</th>
                         </tr>
                     </thead>
+                    <form method="POST" action="{% url 'cart:add' products.id %}" >
+                        {% csrf_token %}
                     <tbody>
                         <tr>
-                            <td>
-                                <select name="color">
-                                    <option value="BLUE">감성블루</option>
-                                    <option value="RED">감성레드</option>
-                                </select>
-                            </td>
+                        <td>
+                            <select name="color">
+                                <option value="BLUE">감성블루</option>
+                                <option value="RED">감성레드</option>
+                            </select>
+                        </td>
                         </tr>
                     </tbody>
                     <thead>
@@ -88,14 +90,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <form method="POST" action="{% url 'cart:add' %}" >
-                                    {% csrf_token %}
-                                    <input id="quantity" name="quantity" class="sm:t-w-40" type="text"> 개<br><br>
+                                    <input id="quantity" name="quantity" class="t-w-10" type="text"> 개<br><br>
                                     <input type="submit" class="btn btn-primary" value="장바구니 담기">
-                                </form>
                             </td>
                         </tr>
                     </tbody>
+                </form>
                 </table>
                 <div>
                     <a href="{% url 'products:list'%}" class="btn btn-primary">상품목록</a>
@@ -182,5 +182,6 @@
             </ul>
             <!-- 페이징처리 끝 -->
         </div>
+    </div>
 </section>
 {%endblock%}
