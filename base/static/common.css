@@ -113,6 +113,22 @@
      object-fit: cover;
 }
 
+.t-p-3 {
+  padding: 0.75rem;
+}
+
+.t-p-\[30px\] {
+  padding: 30px;
+}
+
+.t-p-\[10px\] {
+  padding: 10px;
+}
+
+.t-p-\[5px\] {
+  padding: 5px;
+}
+
 .t-py-\[20px\] {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -324,14 +340,6 @@ html > body {
 @media (min-width: 640px) {
   .sm\:t-w-40 {
     width: 10rem;
-  }
-
-  .sm\:t-w-10 {
-    width: 2.5rem;
-  }
-
-  .sm\:t-w-1 {
-    width: 0.25rem;
   }
 
   .sm\:t-grid-cols-2 {

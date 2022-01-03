@@ -44,7 +44,7 @@ def question_create(request, product_id):
         form = QuestionForm(request.POST)
         if form.is_valid():
             question = form.save(commit=False)
-            question.user_id = request.user.id
+            question.user = request.user.id
             question.object_id = product_id
             question.content_type = ContentType.objects.get_for_model(product)
             question.save()
