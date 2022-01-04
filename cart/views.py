@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from products.models import ProductReal
 from .forms import CartForm
+from .models import CartItem
 from django.http import HttpResponse
 
 # Create your views here.
@@ -20,3 +21,11 @@ def cart_add(request, product_id):
         cart.product_real_id = index
         cart.save()
         return redirect('products:detail', product_id=9)
+
+@login_required(login_url='accounts:signin')
+def cart_list(request):
+    my_cart = CartItem.objects.all()
+    for cart in my_cart :
+        if cart.user_id == request.user :
+            my_cart = cart
+        return render(request, 'cart/cart_list.html', {'my_cart': my_cart})
