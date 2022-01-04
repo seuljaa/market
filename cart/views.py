@@ -26,4 +26,6 @@ def cart_add(request, product_id):
 @login_required(login_url='accounts:signin')
 def cart_list(request):
     cartitem = CartItem.objects.filter(user=request.user)
-    return render(request, 'cart/cart_list.html', {'cartitem': cartitem})
+    product_real = ProductReal.objects.all()
+    product = Product.objects.all()
+    return render(request, 'cart/cart_list.html', {'cartitem': cartitem,'product_real':product_real, 'product':product })

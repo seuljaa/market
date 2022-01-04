@@ -14,14 +14,22 @@
                             <th>합계</th>
                         </tr>
                     </thead>
-                    {% for product in cartitem %}
+                    {% for item in cartitem %}
                     <tbody>
                         <tr>
                             <th><img class="t-w-full t-max-w-[100px] t-rounded" src="{{products.thumb_img_url}}" alt=""></th>
-                            <th>{{product.product_real_id}}</th>
+                            {% for opt in product_real %}
+                            {% if item.product_real_id == opt.id %}
+                            {% for name in product %}
+                            {% if name.id == opt.product_id %}
+                            <th>{{name.display_name}}</th>
                             <th>가격</th>
-                            <th>{{product.quantity}}</th>
+                            <th>{{item.quantity}}</th>
                             <th>합계</th>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            {% endfor %}
                         </tr>
                     </tbody>
                     {% endfor %}
