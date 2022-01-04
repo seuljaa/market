@@ -22,11 +22,11 @@
                     <tbody>
                     {% for item in cartitem %}
                         <tr>
-                            <th><img class="t-w-full t-max-w-[100px] t-rounded" src="{{products.thumb_img_url}}" alt=""></th>
                             {% for opt in product_real %}
                             {% if item.product_real_id == opt.id %}
                             {% for name in product %}
                             {% if name.id == opt.product_id %}
+                            <th><img class="t-w-full t-max-w-[100px] t-rounded" src="{{name.thumb_img_url}}" alt=""></th>
                             <th>{{name.display_name}}</th>
                             <th>{{name.sale_price|intcomma}}원</th>
                             <th>{{item.quantity}}개</th>
