@@ -126,6 +126,10 @@
   flex-direction: column;
 }
 
+.t-content-center {
+  align-content: center;
+}
+
 .t-items-center {
   align-items: center;
 }
