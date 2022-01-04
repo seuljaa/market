@@ -4,8 +4,8 @@
 {% load django_bootstrap5 %}
 
 {%block content %}
-        <div class="container card">
-            <div class="card-header">
+        <div class="container card ">
+            <div class="card-header t-text-3xl t-font-bold">
                 장바구니
             </div>
             <div class="card-body">
@@ -19,8 +19,8 @@
                             <th>합계</th>
                         </tr>
                     </thead>
-                    {% for item in cartitem %}
                     <tbody>
+                    {% for item in cartitem %}
                         <tr>
                             <th><img class="t-w-full t-max-w-[100px] t-rounded" src="{{products.thumb_img_url}}" alt=""></th>
                             {% for opt in product_real %}
@@ -29,16 +29,17 @@
                             {% if name.id == opt.product_id %}
                             <th>{{name.display_name}}</th>
                             <th>{{name.sale_price|intcomma}}원</th>
-                            <th>{{item.quantity}}</th>
+                            <th>{{item.quantity}}개</th>
                             <th>{{name.sale_price|multiply:item.quantity|intcomma}}원</th>
                             {% endif %}
                             {% endfor %}
                             {% endif %}
                             {% endfor %}
                         </tr>
-                    </tbody>
                     {% endfor %}
+                    </tbody>
                 </table>
+                <div class="t-text-3xl">합계 : </div>
                 </div>
             </div>
 {%endblock%}
