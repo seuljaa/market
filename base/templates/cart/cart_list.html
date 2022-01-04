@@ -12,6 +12,7 @@
                 <table class="table table-hover t-text-center t-align-middle">
                     <thead class="t-container t-text-center">
                         <tr>
+                            <th>번호</th>
                             <th>이미지</th>
                             <th>상품정보</th>
                             <th>판매가</th>
@@ -20,12 +21,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                    {% with num=0 %}
                     {% for item in cartitem %}
                         <tr>
                             {% for opt in product_real %}
                             {% if item.product_real_id == opt.id %}
                             {% for name in product %}
                             {% if name.id == opt.product_id %}
+                            <th>{{num|add:1}}</th>
                             <th><img class="t-w-full t-max-w-[100px] t-rounded" src="{{name.thumb_img_url}}" alt=""></th>
                             <th>{{name.display_name}}</th>
                             <th>{{name.sale_price|intcomma}}원</th>
@@ -37,6 +40,7 @@
                             {% endfor %}
                         </tr>
                     {% endfor %}
+                    {% endwith %}
                     </tbody>
                 </table>
                 <div class="t-text-3xl">합계 : </div>
