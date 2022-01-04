@@ -76,6 +76,10 @@
   max-width: 300px;
 }
 
+.t-max-w-\[100px\] {
+  max-width: 100px;
+}
+
 .t-flex-1 {
   flex: 1 1 0%;
 }

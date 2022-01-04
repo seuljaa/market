@@ -27,5 +27,5 @@ def cart_list(request):
     my_cart = CartItem.objects.all()
     for cart in my_cart :
         if cart.user_id == request.user :
-            my_cart = cart
+            my_cart = cart.objects.get(pk=cart.id)
         return render(request, 'cart/cart_list.html', {'my_cart': my_cart})

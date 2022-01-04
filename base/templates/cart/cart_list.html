@@ -1,1 +1,29 @@
-{{my_cart}}
+        <div class="container card">
+            <div class="card-header">
+                장바구니
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>이미지</th>
+                            <th>상품정보</th>
+                            <th>판매가</th>
+                            <th>수량</th>
+                            <th>합계</th>
+                        </tr>
+                    </thead>
+                    {% for product in my_cart %}
+                    <tbody>
+                        <tr>
+                            <th><img class="t-w-full t-max-w-[100px] t-rounded" src="{{products.thumb_img_url}}" alt=""></th>
+                            <th>{{product.product_real_id}}</th>
+                            <th>가격</th>
+                            <th>{{product.quantity}}</th>
+                            <th>합계</th>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+                </div>
+            </div>
