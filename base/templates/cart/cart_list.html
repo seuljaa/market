@@ -1,3 +1,4 @@
+
         <div class="container card">
             <div class="card-header">
                 장바구니
@@ -13,7 +14,7 @@
                             <th>합계</th>
                         </tr>
                     </thead>
-                    {% for product in my_cart %}
+                    {% for product in cartitem %}
                     <tbody>
                         <tr>
                             <th><img class="t-w-full t-max-w-[100px] t-rounded" src="{{products.thumb_img_url}}" alt=""></th>
