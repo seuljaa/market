@@ -1,4 +1,9 @@
+{% extends "layout.html" %}
+{% load cart_filter %}
+{% load humanize %}
+{% load django_bootstrap5 %}
 
+{%block content %}
         <div class="container card">
             <div class="card-header">
                 장바구니
@@ -23,9 +28,9 @@
                             {% for name in product %}
                             {% if name.id == opt.product_id %}
                             <th>{{name.display_name}}</th>
-                            <th>가격</th>
+                            <th>{{name.sale_price|intcomma}}원</th>
                             <th>{{item.quantity}}</th>
-                            <th>합계</th>
+                            <th>{{name.sale_price|multiply:item.quantity|intcomma}}원</th>
                             {% endif %}
                             {% endfor %}
                             {% endif %}
@@ -36,3 +41,4 @@
                 </table>
                 </div>
             </div>
+{%endblock%}
