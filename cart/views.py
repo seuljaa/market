@@ -30,3 +30,15 @@ def cart_list(request):
     product_real = ProductReal.objects.all()
     product = Product.objects.all()
     return render(request, 'cart/cart_list.html', {'cartitem': cartitem,'product_real':product_real, 'product':product })
+
+@login_required(login_url='accounts:signin')
+def cart_modify(request, product_real_id, item_id):
+    item = CartItem.objects.get(pk=item_id)
+    if request.method=='POST':
+        form=CartForm(request.POST, instance=item)
+        if form.is_valid():
+            cartitem=form.save(commit=False)
+            cartitem.user_id = request.user.id
+            cartitem.product_real_id = product_real_id
+            cartitem.save()
+            return redirect('cart:cart_list')

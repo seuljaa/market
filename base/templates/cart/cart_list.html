@@ -33,11 +33,10 @@
                 <th>{{name.display_name}}</th>
                 <th>{{name.sale_price|intcomma}}원</th>
                 <th>
-                    <form class="t-flex t-items-center t-justify-center">
+                    <form class="t-flex t-items-center t-justify-center" method="POST" action="{% url 'cart:cart_modify' item.product_real_id item.id %}">
                         {% csrf_token %}
-                        &nbsp;
                         <input id="quantity" name="quantity" class="t-w-12 t-text-center form-control" type="text"
-                               value="{{item.quantity}}"> 개
+                               value="{{item.quantity}}">&nbsp;개
                         &nbsp;
                         <input class="btn btn-outline-dark btn-sm" id="modify" name="modify" type="submit" value="수정">
                     </form>
