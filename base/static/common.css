@@ -90,10 +90,6 @@
   display: grid;
 }
 
-.t-max-h-full {
-  max-height: 100%;
-}
-
 .t-min-h-screen {
   min-height: 100vh;
 }
@@ -102,28 +98,16 @@
   width: 100%;
 }
 
-.t-w-10 {
-  width: 2.5rem;
+.t-w-12 {
+  width: 3rem;
 }
 
 .t-w-16 {
   width: 4rem;
 }
 
-.t-w-9 {
-  width: 2.25rem;
-}
-
-.t-w-14 {
-  width: 3.5rem;
-}
-
-.t-w-12 {
-  width: 3rem;
-}
-
-.t-w-11 {
-  width: 2.75rem;
+.t-w-10 {
+  width: 2.5rem;
 }
 
 .t-max-w-\[100px\] {
@@ -175,10 +159,6 @@
      object-fit: cover;
 }
 
-.t-p-3 {
-  padding: 0.75rem;
-}
-
 .t-py-\[20px\] {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -190,10 +170,6 @@
 
 .t-text-center {
   text-align: center;
-}
-
-.t-text-justify {
-  text-align: justify;
 }
 
 .t-align-middle {
@@ -209,13 +185,13 @@
   line-height: 2.25rem;
 }
 
-.t-text-\[1\.2rem\] {
-  font-size: 1.2rem;
-}
-
 .t-text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.t-text-\[1\.2rem\] {
+  font-size: 1.2rem;
 }
 
 .t-font-bold {

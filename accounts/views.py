@@ -1,6 +1,9 @@
+from django.http import HttpResponse
+import requests
+from accounts import models
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import login as auth_login, login
 from django.db.models import QuerySet
 from django.urls import reverse
 
@@ -43,3 +46,51 @@ def find_id(request):
         form = FindUsernameForm()
 
     return render(request, 'accounts/find_id.html', {'form': form,})
+
+
+def kakao_signin(request):
+    client_id = "a329ebaccd9854fc22d918fa5a09b904"
+    REDIRECT_URI = "http://localhost:8000/accounts/signin/kakao/callback"
+    return redirect(
+        f"https://kauth.kakao.com/oauth/authorize?client_id={client_id}&redirect_uri={REDIRECT_URI}&response_type=code"
+    )
+
+def kakao_signin_callback(request):
+        # (1)
+        code = request.GET.get("code")
+        client_id = "a329ebaccd9854fc22d918fa5a09b904"
+        REDIRECT_URI = "http://localhost:8000/accounts/signin/kakao/callback"
+        # (2)
+        token_request = requests.get(
+            f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={client_id}&redirect_uri={REDIRECT_URI}&code={code}"
+        )
+        # (3)
+        token_json = token_request.json()
+
+        # (4)
+        access_token = token_json.get("access_token")
+        # (5)
+        profile_request = requests.get(
+            "https://kapi.kakao.com/v2/user/me",
+            headers={"Authorization": f"Bearer {access_token}"},
+        )
+        profile_json = profile_request.json()
+        email = profile_json.get("kakao_account", None).get("email")
+        nickname = profile_json.get("kakao_account", None).get("profile", None).get("nickname")
+        # (7)
+        try:
+            user = models.User.objects.get(email=email)
+
+        except models.User.DoesNotExist:
+            user = models.User.objects.create(
+                email=email,
+                username=email,
+                first_name=nickname,
+                last_name=nickname,
+            )
+            user.set_unusable_password()
+            user.save()
+
+        login(request, user)
+        return redirect('main')
+
