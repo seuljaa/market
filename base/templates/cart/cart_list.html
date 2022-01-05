@@ -18,6 +18,7 @@
                 <th>판매가</th>
                 <th>수량</th>
                 <th>합계</th>
+                <th>삭제</th>
             </tr>
             </thead>
             <tbody>
@@ -42,6 +43,12 @@
                     </form>
                 </th>
                 <th>{{name.sale_price|multiply:item.quantity|intcomma}}원</th>
+                <th>
+                    <form method="POST" action="{% url 'cart:cart_del' item.id %}">
+                        {% csrf_token %}
+                        <input class="btn btn-outline-danger btn-sm t-text-xs" id="del" name="del" type="submit" value="X">
+                    </form>
+                </th>
                 {% endif %}
                 {% endfor %}
                 {% endif %}

@@ -42,3 +42,11 @@ def cart_modify(request, product_real_id, item_id):
             cartitem.product_real_id = product_real_id
             cartitem.save()
             return redirect('cart:cart_list')
+
+
+@login_required(login_url='accounts:signin')
+def cart_del(request, item_id):
+    item = CartItem.objects.get(pk=item_id)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('cart:cart_list')
