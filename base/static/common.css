@@ -90,6 +90,10 @@
   display: grid;
 }
 
+.t-max-h-full {
+  max-height: 100%;
+}
+
 .t-min-h-screen {
   min-height: 100vh;
 }
@@ -98,20 +102,36 @@
   width: 100%;
 }
 
-.t-w-16 {
-  width: 4rem;
-}
-
 .t-w-10 {
   width: 2.5rem;
 }
 
-.t-max-w-\[300px\] {
-  max-width: 300px;
+.t-w-16 {
+  width: 4rem;
+}
+
+.t-w-9 {
+  width: 2.25rem;
+}
+
+.t-w-14 {
+  width: 3.5rem;
+}
+
+.t-w-12 {
+  width: 3rem;
+}
+
+.t-w-11 {
+  width: 2.75rem;
 }
 
 .t-max-w-\[100px\] {
   max-width: 100px;
+}
+
+.t-max-w-\[300px\] {
+  max-width: 300px;
 }
 
 .t-flex-1 {
@@ -124,10 +144,6 @@
 
 .t-flex-col {
   flex-direction: column;
-}
-
-.t-content-center {
-  align-content: center;
 }
 
 .t-items-center {
@@ -154,19 +170,13 @@
   border-radius: 0.25rem;
 }
 
-.t-bg-gray-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-}
-
-.t-bg-gray-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
-
 .t-object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.t-p-3 {
+  padding: 0.75rem;
 }
 
 .t-py-\[20px\] {
@@ -182,6 +192,10 @@
   text-align: center;
 }
 
+.t-text-justify {
+  text-align: justify;
+}
+
 .t-align-middle {
   vertical-align: middle;
 }
@@ -190,13 +204,13 @@
   font-size: 20px;
 }
 
-.t-text-\[1\.2rem\] {
-  font-size: 1.2rem;
-}
-
 .t-text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.t-text-\[1\.2rem\] {
+  font-size: 1.2rem;
 }
 
 .t-font-bold {

@@ -4,46 +4,55 @@
 {% load django_bootstrap5 %}
 
 {%block content %}
-        <div class="container card ">
-            <div class="card-header t-text-3xl t-font-bold">
-                장바구니
-            </div>
-            <div class="card-body">
-                <table class="table table-hover t-text-center t-align-middle">
-                    <thead class="t-container t-text-center">
-                        <tr>
-                            <th>번호</th>
-                            <th>이미지</th>
-                            <th>상품정보</th>
-                            <th>판매가</th>
-                            <th>수량</th>
-                            <th>합계</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% with num=0 %}
-                    {% for item in cartitem %}
-                        <tr>
-                            {% for opt in product_real %}
-                            {% if item.product_real_id == opt.id %}
-                            {% for name in product %}
-                            {% if name.id == opt.product_id %}
-                            <th>{{num|add:1}}</th>
-                            <th><img class="t-w-full t-max-w-[100px] t-rounded" src="{{name.thumb_img_url}}" alt=""></th>
-                            <th>{{name.display_name}}</th>
-                            <th>{{name.sale_price|intcomma}}원</th>
-                            <th>{{item.quantity}}개</th>
-                            <th>{{name.sale_price|multiply:item.quantity|intcomma}}원</th>
-                            {% endif %}
-                            {% endfor %}
-                            {% endif %}
-                            {% endfor %}
-                        </tr>
-                    {% endfor %}
-                    {% endwith %}
-                    </tbody>
-                </table>
-                <div class="t-text-3xl">합계 : </div>
-                </div>
-            </div>
+<div class="container card ">
+    <div class="card-header t-text-3xl t-font-bold">
+        장바구니
+    </div>
+    <div class="card-body">
+        <table class="table table-hover t-text-center t-align-middle">
+            <thead class="t-container t-text-center">
+            <tr>
+                <th>번호</th>
+                <th>이미지</th>
+                <th>상품정보</th>
+                <th>판매가</th>
+                <th>수량</th>
+                <th>합계</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% with num=0 %}
+            {% for item in cartitem %}
+            <tr>
+                {% for opt in product_real %}
+                {% if item.product_real_id == opt.id %}
+                {% for name in product %}
+                {% if name.id == opt.product_id %}
+                <th>{{num|add:1}}</th>
+                <th><img class="t-w-full t-max-w-[100px] t-rounded" src="{{name.thumb_img_url}}" alt=""></th>
+                <th>{{name.display_name}}</th>
+                <th>{{name.sale_price|intcomma}}원</th>
+                <th>
+                    <form class="t-flex t-items-center t-justify-center">
+                        {% csrf_token %}
+                        &nbsp;
+                        <input id="quantity" name="quantity" class="t-w-12 t-text-center form-control" type="text"
+                               value="{{item.quantity}}"> 개
+                        &nbsp;
+                        <input class="btn btn-outline-dark btn-sm" id="modify" name="modify" type="submit" value="수정">
+                    </form>
+                </th>
+                <th>{{name.sale_price|multiply:item.quantity|intcomma}}원</th>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            {% endwith %}
+            </tbody>
+        </table>
+        <div class="t-text-3xl">합계 :</div>
+    </div>
+</div>
 {%endblock%}
