@@ -1,3 +1,5 @@
+import os
+
 from django.http import HttpResponse
 import requests
 from accounts import models
@@ -49,7 +51,7 @@ def find_id(request):
 
 
 def kakao_signin(request):
-    client_id = "a329ebaccd9854fc22d918fa5a09b904"
+    client_id = os.environ.get("KAKAO_ID")
     REDIRECT_URI = "http://localhost:8000/accounts/signin/kakao/callback"
     return redirect(
         f"https://kauth.kakao.com/oauth/authorize?client_id={client_id}&redirect_uri={REDIRECT_URI}&response_type=code"
@@ -58,7 +60,7 @@ def kakao_signin(request):
 def kakao_signin_callback(request):
         # (1)
         code = request.GET.get("code")
-        client_id = "a329ebaccd9854fc22d918fa5a09b904"
+        client_id = os.environ.get("KAKAO_ID")
         REDIRECT_URI = "http://localhost:8000/accounts/signin/kakao/callback"
         # (2)
         token_request = requests.get(
