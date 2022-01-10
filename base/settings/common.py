@@ -88,9 +88,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'market',
-        'USER': 'sbsst',
-        'PASSWORD': 'sbs123414',
-        'HOST': '127.0.0.1',
+        'USER': 'seulja',
+        'PASSWORD': 'tmfwirj19',
+        'HOST': 'public.lllolll.me',
         'PORT': '3306',
     }
 }
